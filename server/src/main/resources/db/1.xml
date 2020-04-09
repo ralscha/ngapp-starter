@@ -1,0 +1,29 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+	<changeSet author="dev" id="1">
+		<createTable tableName="app_user">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="app_userPK" />
+			</column>
+			<column name="authorities" type="VARCHAR(255)" />
+			<column name="email" type="VARCHAR(255)" />
+			<column name="enabled" type="BIT">
+				<constraints nullable="false" />
+			</column>
+			<column name="first_name" type="VARCHAR(255)" />
+			<column name="last_name" type="VARCHAR(255)" />
+			<column name="user_name" type="VARCHAR(255)" />
+			<column name="password_hash" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="dev" id="2">
+	   <customChange class="ch.rasc.ngstart.migration.InitialUserImport" />
+	</changeSet> 
+
+</databaseChangeLog>

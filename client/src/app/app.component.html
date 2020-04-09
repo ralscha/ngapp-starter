@@ -1,0 +1,26 @@
+<p-toast [baseZIndex]="10000" key="tst" position="top-center"></p-toast>
+<div class="main">
+  <header>
+    <a class="logo" href="#">
+      <h1>Starter App</h1>
+    </a>
+  </header>
+  <div class="toolbar">
+    <h2>Angular Starter App with Angular / PrimeNG</h2>
+    <button (click)="logout()" *ngIf="authenticated" class="ui-button-secondary" pButton type="button" label="Logout" ></button>
+  </div>
+  <nav>
+    <ul *ngIf="authenticated">
+      <li>
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <a (click)="logout()" href="#">Logout</a>
+      </li>
+    </ul>
+  </nav>
+  <main>
+    <ngx-loading-bar [fixed]="false" [includeSpinner]="false" height="8px"></ngx-loading-bar>
+    <router-outlet></router-outlet>
+  </main>
+</div>
