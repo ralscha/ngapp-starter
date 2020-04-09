@@ -7,12 +7,16 @@
   </header>
   <div class="toolbar">
     <h2>Angular Starter App with Angular / PrimeNG</h2>
-    <button (click)="logout()" *ngIf="authenticated" class="ui-button-secondary" pButton type="button" label="Logout" ></button>
+    <button (click)="logout()" *ngIf="authenticated" class="ui-button-secondary" label="Logout" pButton
+            type="button"></button>
   </div>
   <nav>
     <ul *ngIf="authenticated">
       <li>
         <a href="#">Home</a>
+      </li>
+      <li *ngIf="admin">
+        <a href="#/user-list">Users</a>
       </li>
       <li>
         <a (click)="logout()" href="#">Logout</a>

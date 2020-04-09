@@ -9,20 +9,21 @@ import {AuthService} from './auth.service';
 })
 export class AppComponent {
   authenticated = false;
+  admin = false;
 
   constructor(private readonly router: Router,
               private readonly authService: AuthService) {
 
     this.authService.authority$.subscribe(authority => {
-      if (authority !== undefined) {
-        this.authenticated = authority !== null;
+      this.authenticated = authority != null;
+      this.admin = authority === 'ADMIN';
 
-        if (this.authenticated) {
-          this.router.navigate(['home'], {replaceUrl: true});
-        } else {
-          this.router.navigate(['login'], {replaceUrl: true});
-        }
+      if (this.authenticated) {
+        this.router.navigate(['home'], {replaceUrl: true});
+      } else {
+        this.router.navigate(['login'], {replaceUrl: true});
       }
+
     });
   }
 

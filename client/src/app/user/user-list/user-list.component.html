@@ -1,0 +1,40 @@
+<p-table #dt [(contextMenuSelection)]="userService.selectedObject"
+         [(selection)]="userService.selectedObject"
+         [columns]="cols"
+         [contextMenu]="cm"
+         [loading]="loading"
+         [rowTrackBy]="trackById"
+         [scrollable]="true"
+         stateKey="/user-list" [value]="users"
+         dataKey="id"
+         selectionMode="single" stateStorage="session">
+  <ng-template pTemplate="caption">
+    <div class="table-header">
+      <span class="title">Users</span>
+      <div class="buttons">
+        <button (click)="edit()" icon="fas fa-plus" label="New" pButton type="button"></button>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template let-columns pTemplate="header">
+    <tr>
+      <th *ngFor="let col of columns"
+          [ngClass]="{'col-center': col.align === 'center'}"
+          [pSortableColumn]="col.field">
+        {{col.header}}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template let-columns="columns" let-rowData pTemplate="body">
+    <tr (dblclick)="edit(rowData)" [attr.id]="rowData.id" [pContextMenuRow]="rowData"
+        [pSelectableRow]="rowData">
+      <td *ngFor="let col of columns"
+          [ngClass]="{'col-right': col.align === 'right', 'col-center': col.align === 'center'}">{{rowData[col.field]}}</td>
+    </tr>
+  </ng-template>
+</p-table>
+<p-contextMenu #cm [model]="contextMenuItems"></p-contextMenu>
+
+

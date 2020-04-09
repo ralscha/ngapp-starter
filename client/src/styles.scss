@@ -88,3 +88,31 @@ select {
   font-weight: 700;
   color: red;
 }
+
+.ui-table-thead > tr > th {
+  text-align: start;
+}
+
+.col-center {
+  text-align: center !important;
+}
+
+.col-right {
+  text-align: end !important;
+}
+
+.table-header {
+    padding: 0;
+    margin: 0;
+    text-align: start;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-auto-flow: column;
+    grid-auto-columns: auto;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      font-size: 1.5em;
+    }
+}
