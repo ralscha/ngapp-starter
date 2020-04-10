@@ -5,10 +5,10 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   ButtonModule,
-  CheckboxModule, ContextMenuModule,
+  CheckboxModule, ContextMenuModule, DropdownModule,
   InputTextModule,
   KeyFilterModule,
-  MessageService,
+  MessageService, PasswordModule,
   TableModule,
   ToastModule
 } from 'primeng';
@@ -42,6 +42,8 @@ import {UserEditComponent} from './user/user-edit/user-edit.component';
     KeyFilterModule,
     CheckboxModule,
     ButtonModule,
+    PasswordModule,
+    DropdownModule,
     ToastModule,
     CustomFormsModule
   ],

@@ -4,7 +4,6 @@ import {ColumnDef} from '../../column-def';
 import {finalize} from 'rxjs/operators';
 import {MenuItem} from 'primeng';
 import {Router} from '@angular/router';
-import {UserSerivce} from '../user-service';
 
 @Component({
   selector: 'app-user-list',
@@ -17,10 +16,10 @@ export class UserListComponent implements OnInit {
   cols: ColumnDef[];
   loading = false;
   contextMenuItems: MenuItem[];
+  selectedObject: any;
 
   constructor(private readonly httpClient: HttpClient,
-              private readonly router: Router,
-              public readonly userService: UserSerivce) {
+              private readonly router: Router) {
 
     this.contextMenuItems = [
       {label: 'Edit', icon: 'fas fa-pencil-alt', command: () => this.editSelection()},
@@ -63,11 +62,11 @@ export class UserListComponent implements OnInit {
   }
 
   edit(rowdata: any = null) {
-    this.userService.selectedObject = rowdata;
-    this.router.navigateByUrl('user-edit');
+    this.router.navigateByUrl('user-edit', {state: rowdata});
   }
 
   private deleteUser() {
-    return undefined;
+    this.httpClient.post<void>('/be/user-delete', this.selectedObject.id, {withCredentials: true})
+      .subscribe(_ => this.ngOnInit());
   }
 }

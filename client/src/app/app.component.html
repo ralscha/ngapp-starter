@@ -13,10 +13,10 @@
   <nav>
     <ul *ngIf="authenticated">
       <li>
-        <a href="#">Home</a>
+        <a routerLink="/home">Home</a>
       </li>
       <li *ngIf="admin">
-        <a href="#/user-list">Users</a>
+        <a routerLink="/user-list">Users</a>
       </li>
       <li>
         <a (click)="logout()" href="#">Logout</a>

@@ -116,3 +116,86 @@ select {
       font-size: 1.5em;
     }
 }
+
+.form-container {
+
+  .two-col-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    width: 100%;
+  }
+
+  .tab-panel-content {
+    padding: 1em;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 15px;
+    width: 100%;
+    align-items: center;
+    justify-items: start;
+  }
+
+  .card {
+    padding: 1em 1em 1.5em 1em;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 15px;
+    width: 100%;
+    align-items: center;
+    justify-items: start;
+
+    .group {
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: auto auto;
+      justify-content: start;
+    }
+
+    p-tabView {
+      grid-column: 1 / -1;
+      justify-self: stretch;
+    }
+
+    h1,h2 {
+      margin: 0;
+      padding: 0;
+    }
+
+    .card-title {
+      grid-column: 1 / -1;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-gap: 15px;
+      align-items: center;
+    }
+
+    .card-title > *:nth-child(3) {
+      justify-self: end;
+    }
+
+    .card-buttons {
+      width: 100%;
+      grid-column: 1 / -1;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-gap: 15px;
+      align-items: center;
+    }
+
+    .card-buttons > *:last-child {
+      justify-self: end;
+    }
+
+  }
+
+  input {
+    width: 100%;
+  }
+
+}
+

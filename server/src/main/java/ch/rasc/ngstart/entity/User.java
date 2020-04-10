@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "AppUser")
@@ -37,10 +38,10 @@ public class User extends AbstractPersistable<Long> {
 	@Column(unique = true)
 	private String email;
 
+	@NotBlank
 	private String authorities;
 
 	@Size(max = 255)
-	@JsonIgnore
 	private String passwordHash;
 
 	private boolean enabled;
@@ -85,10 +86,12 @@ public class User extends AbstractPersistable<Long> {
 		this.authorities = authorities;
 	}
 
+	@JsonIgnore
 	public String getPasswordHash() {
 		return this.passwordHash;
 	}
 
+	@JsonProperty("passwordHash")
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
 	}
