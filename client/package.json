@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build-prod": "ng build --prod",
+    "postbuild-prod": "bread-compressor dist/app",
     "lint": "ng lint",
     "serve-dist": "ws --hostname localhost -d dist/app -p 1234 -o --log.format tiny --rewrite \"/be/* -> http://localhost:8080/be/$1\""
   },
@@ -40,6 +41,7 @@
     "@angular/compiler-cli": "9.1.1",
     "@angular/language-service": "9.1.1",
     "@types/node": "13.11.1",
+    "bread-compressor-cli": "^1.1.0",
     "codelyzer": "5.2.2",
     "local-web-server": "4.0.0",
     "tslint": "6.1.1",

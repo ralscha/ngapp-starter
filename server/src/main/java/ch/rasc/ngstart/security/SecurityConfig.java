@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,6 +28,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new Argon2PasswordEncoder(16, 32, 8, 1 << 16, 4);
+	}
+
+	@Override
+	public void configure(WebSecurity web) {
+		web.ignoring().antMatchers("/*.br", "/*.gz", "/", "/*.html", "/*.png", "/*.eot",
+				"/*.svg", "/*.ttf", "/*.woff2", "/*.woff", "/*.gif", "/*.js", "/*.css",
+				"/*.ico");
 	}
 
 	@Override
