@@ -5,10 +5,15 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   ButtonModule,
-  CheckboxModule, ContextMenuModule, DropdownModule,
+  CheckboxModule,
+  ConfirmationService,
+  ConfirmDialogModule,
+  ContextMenuModule,
+  DropdownModule,
   InputTextModule,
   KeyFilterModule,
-  MessageService, PasswordModule,
+  MessageService,
+  PasswordModule,
   TableModule,
   ToastModule
 } from 'primeng';
@@ -37,6 +42,7 @@ import {UserEditComponent} from './user/user-edit/user-edit.component';
     InputTextModule,
     LoadingBarHttpClientModule,
     LoadingBarModule,
+    ConfirmDialogModule,
     TableModule,
     ContextMenuModule,
     KeyFilterModule,
@@ -47,7 +53,7 @@ import {UserEditComponent} from './user/user-edit/user-edit.component';
     ToastModule,
     CustomFormsModule
   ],
-  providers: [MessageService],
+  providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

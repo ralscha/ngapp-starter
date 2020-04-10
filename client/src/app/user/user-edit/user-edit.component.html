@@ -3,7 +3,7 @@
   <div class="card">
 
     <div class="card-title">
-      <button routerLink="/user-list" icon="fas fa-arrow-left" label="Back" pButton type="button"></button>
+      <button icon="fas fa-arrow-left" label="Back" pButton routerLink="/user-list" type="button"></button>
       <h2>User</h2>
     </div>
 
@@ -72,8 +72,8 @@
 
     <label for="authority">Authority</label>
     <div>
-      <p-dropdown #authorities="ngModel" required id="authority" name="authorities" [options]="authoritiesOptions"
-                  [ngModel]="selectedObject?.authorities" [autoDisplayFirst]="false"></p-dropdown>
+      <p-dropdown #authorities="ngModel" [autoDisplayFirst]="false" [ngModel]="selectedObject?.authorities" [options]="authoritiesOptions" id="authority"
+                  name="authorities" required></p-dropdown>
       <div *ngIf="form.submitted && authorities.invalid" class="input-error">
         <span *ngIf="authorities.errors.required">Authority is mandatory</span>
       </div>

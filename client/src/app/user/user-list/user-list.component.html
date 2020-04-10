@@ -1,3 +1,4 @@
+<p-confirmDialog icon="pi pi-exclamation-triangle"></p-confirmDialog>
 <p-table #dt [(contextMenuSelection)]="selectedObject"
          [(selection)]="selectedObject"
          [columns]="cols"
@@ -5,9 +6,9 @@
          [loading]="loading"
          [rowTrackBy]="trackById"
          [scrollable]="true"
-         stateKey="/user-list" [value]="users"
-         dataKey="id"
-         selectionMode="single" stateStorage="session">
+         [value]="users" dataKey="id"
+         selectionMode="single"
+         stateKey="/user-list" stateStorage="session">
   <ng-template pTemplate="caption">
     <div class="table-header">
       <span class="title">Users</span>

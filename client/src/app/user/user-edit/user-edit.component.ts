@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {noop} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {LabelValue} from '../../label-value';
 import {HttpClient} from '@angular/common/http';
+import {MessageService} from 'primeng';
 
 @Component({
   selector: 'app-user-edit',
@@ -16,7 +17,9 @@ export class UserEditComponent implements OnInit {
   authoritiesOptions: LabelValue[];
 
   constructor(private readonly activatedRoute: ActivatedRoute,
-              private readonly httpClient: HttpClient) {
+              private readonly httpClient: HttpClient,
+              private readonly messageService: MessageService,
+              private readonly router: Router) {
     this.authoritiesOptions = [{label: 'USER', value: 'USER'}, {label: 'ADMIN', value: 'ADMIN'}];
   }
 
@@ -27,6 +30,14 @@ export class UserEditComponent implements OnInit {
 
   save(value: any) {
     this.httpClient.post<void>('/be/user-save', {id: this.selectedObject.id, ...value}, {withCredentials: true})
-      .subscribe(noop);
+      .subscribe(() => {
+        this.messageService.add({
+          key: 'tst',
+          severity: 'success',
+          summary: 'Successfully saved',
+          detail: `${this.selectedObject.userName} saved`
+        });
+        this.router.navigateByUrl('user-list');
+      });
   }
 }

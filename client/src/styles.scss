@@ -102,19 +102,19 @@ select {
 }
 
 .table-header {
-    padding: 0;
-    margin: 0;
-    text-align: start;
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-auto-flow: column;
-    grid-auto-columns: auto;
-    justify-content: space-between;
-    align-items: center;
+  padding: 0;
+  margin: 0;
+  text-align: start;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-auto-flow: column;
+  grid-auto-columns: auto;
+  justify-content: space-between;
+  align-items: center;
 
-    .title {
-      font-size: 1.5em;
-    }
+  .title {
+    font-size: 1.5em;
+  }
 }
 
 .form-container {
@@ -157,7 +157,7 @@ select {
       justify-self: stretch;
     }
 
-    h1,h2 {
+    h1, h2 {
       margin: 0;
       padding: 0;
     }

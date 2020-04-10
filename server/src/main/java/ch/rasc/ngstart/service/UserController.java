@@ -45,6 +45,10 @@ public class UserController {
 		if (StringUtils.hasText(user.getPasswordHash())) {
 			user.setPasswordHash(this.passwordEncoder.encode(user.getPasswordHash()));
 		}
+		else if (user.getId() != null) {
+			user.setPasswordHash(this.jpaQueryFactory.select(QUser.user.passwordHash)
+					.from(QUser.user).where(QUser.user.id.eq(user.getId())).fetchOne());
+		}
 		this.jpaQueryFactory.getEntityManager().merge(user);
 	}
 

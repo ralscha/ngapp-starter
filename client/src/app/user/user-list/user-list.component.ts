@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ColumnDef} from '../../column-def';
 import {finalize} from 'rxjs/operators';
-import {MenuItem} from 'primeng';
+import {ConfirmationService, MenuItem, MessageService} from 'primeng';
 import {Router} from '@angular/router';
 
 @Component({
@@ -19,7 +19,9 @@ export class UserListComponent implements OnInit {
   selectedObject: any;
 
   constructor(private readonly httpClient: HttpClient,
-              private readonly router: Router) {
+              private readonly router: Router,
+              private readonly messageService: MessageService,
+              private readonly confirmationService: ConfirmationService) {
 
     this.contextMenuItems = [
       {label: 'Edit', icon: 'fas fa-pencil-alt', command: () => this.editSelection()},
@@ -58,7 +60,7 @@ export class UserListComponent implements OnInit {
   }
 
   editSelection() {
-    this.router.navigateByUrl('user-edit');
+    this.router.navigateByUrl('user-edit', {state: this.selectedObject});
   }
 
   edit(rowdata: any = null) {
@@ -66,7 +68,24 @@ export class UserListComponent implements OnInit {
   }
 
   private deleteUser() {
-    this.httpClient.post<void>('/be/user-delete', this.selectedObject.id, {withCredentials: true})
-      .subscribe(_ => this.ngOnInit());
+    this.confirmationService.confirm({
+      header: 'Delete',
+      message: `Really delete ${this.selectedObject.userName}?`,
+      acceptLabel: 'Delete',
+      rejectLabel: 'Cancel',
+      accept: () => {
+        this.httpClient.post<void>('/be/user-delete', this.selectedObject.id, {withCredentials: true})
+          .subscribe(() => {
+            this.messageService.add({
+              key: 'tst',
+              severity: 'success',
+              summary: 'Successfully deleted',
+              detail: `${this.selectedObject.userName} deleted`
+            });
+            this.ngOnInit();
+          });
+      }
+    });
+
   }
 }
