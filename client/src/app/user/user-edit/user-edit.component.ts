@@ -1,10 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {noop} from 'rxjs';
 import {tap} from 'rxjs/operators';
-import {LabelValue} from '../../label-value';
+import {LabelValue} from '../../model/label-value';
 import {HttpClient} from '@angular/common/http';
 import {MessageService} from 'primeng';
+import {CrudUpdateResponse} from '../../model/crud-update-response';
+import {NgForm} from '@angular/forms';
+import {translateValidationMessage} from '../../util';
 
 @Component({
   selector: 'app-user-edit',
@@ -15,6 +18,8 @@ export class UserEditComponent implements OnInit {
 
   selectedObject: any;
   authoritiesOptions: LabelValue[];
+
+  @ViewChild('form') form: NgForm;
 
   constructor(private readonly activatedRoute: ActivatedRoute,
               private readonly httpClient: HttpClient,
@@ -29,15 +34,34 @@ export class UserEditComponent implements OnInit {
   }
 
   save(value: any) {
-    this.httpClient.post<void>('/be/user-save', {id: this.selectedObject.id, ...value}, {withCredentials: true})
-      .subscribe(() => {
-        this.messageService.add({
-          key: 'tst',
-          severity: 'success',
-          summary: 'Successfully saved',
-          detail: `${this.selectedObject.userName} saved`
-        });
-        this.router.navigateByUrl('user-list');
+    this.httpClient.post<CrudUpdateResponse>('/be/user-save', {id: this.selectedObject.id, ...value}, {withCredentials: true})
+      .subscribe(response => {
+        if (response.success) {
+          this.messageService.add({
+            key: 'tst',
+            severity: 'success',
+            summary: 'Successfully saved',
+            detail: `${this.selectedObject.userName} saved`
+          });
+          this.router.navigateByUrl('user-list');
+        } else {
+          this.messageService.add({
+            key: 'tst',
+            severity: 'error',
+            summary: 'Error',
+            detail: response.globalError ? response.globalError : `Save not successful`
+          });
+          if (response.fieldErrors) {
+            for (const [key, values] of Object.entries(response.fieldErrors)) {
+              const comp = this.form.form.get(key);
+              const errors = [];
+              for (const v of values) {
+                errors.push(translateValidationMessage(v));
+              }
+              comp.setErrors({server: errors.join(', ')});
+            }
+          }
+        }
       });
   }
 }

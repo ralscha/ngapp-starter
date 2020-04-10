@@ -104,6 +104,4 @@ public class User extends AbstractPersistable<Long> {
 		this.enabled = enabled;
 	}
 
-
-
 }

@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ColumnDef} from '../../column-def';
+import {ColumnDef} from '../../model/column-def';
 import {finalize} from 'rxjs/operators';
 import {ConfirmationService, MenuItem, MessageService} from 'primeng';
 import {Router} from '@angular/router';
+import {CrudDeleteResponse} from '../../model/crud-delete-response';
 
 @Component({
   selector: 'app-user-list',
@@ -74,15 +75,24 @@ export class UserListComponent implements OnInit {
       acceptLabel: 'Delete',
       rejectLabel: 'Cancel',
       accept: () => {
-        this.httpClient.post<void>('/be/user-delete', this.selectedObject.id, {withCredentials: true})
-          .subscribe(() => {
-            this.messageService.add({
-              key: 'tst',
-              severity: 'success',
-              summary: 'Successfully deleted',
-              detail: `${this.selectedObject.userName} deleted`
-            });
-            this.ngOnInit();
+        this.httpClient.post<CrudDeleteResponse>('/be/user-delete', this.selectedObject.id, {withCredentials: true})
+          .subscribe(response => {
+            if (response.success) {
+              this.messageService.add({
+                key: 'tst',
+                severity: 'success',
+                summary: 'Successfully deleted',
+                detail: `${this.selectedObject.userName} deleted`
+              });
+              this.ngOnInit();
+            } else {
+              this.messageService.add({
+                key: 'tst',
+                severity: 'error',
+                summary: 'Error',
+                detail: response.error
+              });
+            }
           });
       }
     });
