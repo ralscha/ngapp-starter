@@ -8,7 +8,7 @@
     "build-prod": "ng build --prod",
     "postbuild-prod": "bread-compressor dist/app",
     "lint": "ng lint",
-    "serve-dist": "ws --hostname localhost -d dist/app -p 1234 -o --log.format tiny --rewrite \"/be/* -> http://localhost:8080/be/$1\""
+    "serve-dist": "ws --hostname localhost -d dist/app -p 1234 -o --log.format tiny --rewrite \"/be/(.*) -> http://localhost:8080/be/$1\""
   },
   "private": true,
   "dependencies": {

@@ -41,7 +41,7 @@ export class UserEditComponent implements OnInit {
             key: 'tst',
             severity: 'success',
             summary: 'Successfully saved',
-            detail: `${this.selectedObject.userName} saved`
+            detail: `${value.userName} saved`
           });
           this.router.navigateByUrl('user-list');
         } else {
