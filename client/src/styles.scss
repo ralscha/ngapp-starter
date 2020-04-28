@@ -42,7 +42,6 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  background-color: transparent;
 }
 
 /* Remove list styles on ul, ol elements with a class attribute */
@@ -75,135 +74,15 @@ select {
   font: inherit;
 }
 
-
-
-
-/* NAV */
-
-main {
-  margin-left: 5rem;
-  padding: 1rem;
-  background-color: #f4f7fa;
-  height: 100vh;
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
-
-.navbar {
-  position: fixed;
-  background-color: #313541;
-  transition: width 400ms ease;
-  overflow: hidden;
-  top: 0;
-  width: 5rem;
-  height: 100vh;
-  z-index: 1;
-}
-
-.navbar:hover {
-  width: 16rem;
-}
-
-.navbar:hover .link-text {
-  display: inline;
-}
-
-.navbar:hover .logo svg
-{
-  margin-left: 11rem;
-}
-
-.navbar:hover .logo-text
-{
-  left: 0;
-}
-
-.navbar-nav {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-}
-
-.nav-item {
-  width: 100%;
-}
-
-.nav-item:last-child {
-  margin-top: auto;
-}
-
-.nav-link {
-  display: flex;
-  align-items: center;
-  height: 5rem;
-  color: #76808f;
-  text-decoration: none;
-  filter: grayscale(100%) opacity(0.7);
-  transition: 400ms;
-}
-
-.nav-link:hover {
-  filter: grayscale(0%) opacity(1);
-  color: #fff;
-  background-color: #1f222d;
-}
-
-.link-text {
-  display: none;
-  margin-left: 1rem;
-}
-
-.nav-link svg {
-  width: 2rem;
-  min-width: 2rem;
-  margin: 0 1.5rem;
-}
-
-.fa-primary {
-  color: #ff7eee;
-}
-
-.fa-secondary {
-  color: #df49a6;
-}
-
-.fa-primary,
-.fa-secondary {
-  transition: 400ms;
-}
-
-.logo {
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  text-align: center;
-  color: #fff;
-  background-color: #dc5a60;
-  font-size: 1.5rem;
-  letter-spacing: 0.3ch;
-  width: 100%;
-}
-
-.logo svg {
-  transform: rotate(0deg);
-  transition: 400ms;
-}
-
-.logo-text
-{
-  display: inline;
-  position: absolute;
-  left: -999px;
-  transition: 400ms;
-}
-
-.navbar:hover .logo svg {
-  transform: rotate(-180deg);
-}
-
-/* APP */
 
 .input-error {
   font-weight: 700;
