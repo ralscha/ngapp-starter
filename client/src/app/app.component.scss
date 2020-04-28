@@ -4,7 +4,22 @@
 
   grid-template-columns: var(--admin-nav-width) 1fr;
   grid-template-rows: var(--admin-header-height) 1fr;
-  grid-template-areas: "header toolbar" "nav    main" "footer footer";
+  grid-template-areas: "header toolbar"
+                       "nav    main";
+}
+
+.hidden-nav {
+  grid-template-columns: 1fr;
+  grid-template-areas: "toolbar"
+                       "main";
+}
+
+.hidden-nav nav {
+  display: none;
+}
+
+.hidden-nav header {
+  display: none;
 }
 
 header {
@@ -43,6 +58,12 @@ main {
 }
 
 .toolbar {
+  grid-area: toolbar;
+  display: grid;
+  grid-template-columns: 30px auto;
+  grid-gap: 15px;
+  align-self: center;
+  align-items: center;
   padding: 0 1rem;
 }
 
