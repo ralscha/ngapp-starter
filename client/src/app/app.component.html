@@ -1,15 +1,7 @@
 <p-toast [baseZIndex]="10000" key="tst" position="top-right"></p-toast>
-<div class="main" [class.hidden-nav]="navHidden">
-  <header>
-    <a class="logo" href="#">
-      <h1>Starter App</h1>
-    </a>
-  </header>
-  <div class="toolbar">
-    <svg (click)="navHidden = !navHidden" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
-    <h2>Angular Starter App with Angular / PrimeNG</h2>
-  </div>
-  <nav>
+
+<mat-sidenav-container>
+  <mat-sidenav [opened]="sideNavOpen" mode="side">
     <ul *ngIf="authenticated">
       <li>
         <a routerLink="/home">Home</a>
@@ -21,9 +13,22 @@
         <a (click)="logout()" href="#">Logout</a>
       </li>
     </ul>
-  </nav>
-  <main>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <div class="toolbar">
+      <svg [class.hidden]="!authenticated" (click)="sideNavOpen = !sideNavOpen" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars"
+           class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path fill="currentColor"
+              d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>
+      </svg>
+      <h2>Angular Starter App with Angular / PrimeNG</h2>
+    </div>
+
     <ngx-loading-bar [fixed]="false" [includeSpinner]="false" height="8px"></ngx-loading-bar>
-    <router-outlet></router-outlet>
-  </main>
-</div>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

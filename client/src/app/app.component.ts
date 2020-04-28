@@ -10,7 +10,7 @@ import {AuthService} from './auth.service';
 export class AppComponent {
   authenticated = false;
   admin = false;
-  navHidden = true;
+  sideNavOpen = true;
 
   constructor(private readonly router: Router,
               private readonly authService: AuthService) {
@@ -20,10 +20,10 @@ export class AppComponent {
       this.admin = authority === 'ADMIN';
 
       if (this.authenticated) {
-        this.navHidden = false;
+        this.sideNavOpen = true;
         this.router.navigate(['home'], {replaceUrl: true});
       } else {
-        this.navHidden = true;
+        this.sideNavOpen = false;
         this.router.navigate(['login'], {replaceUrl: true});
       }
 
