@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from './auth.service';
+import {MatSidenav} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,11 @@ import {AuthService} from './auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @ViewChild(MatSidenav) sideNav: MatSidenav;
+
   authenticated = false;
   admin = false;
-  sideNavOpen = true;
+  sideBarOver = false;
 
   constructor(private readonly router: Router,
               private readonly authService: AuthService) {
@@ -20,10 +23,14 @@ export class AppComponent {
       this.admin = authority === 'ADMIN';
 
       if (this.authenticated) {
-        this.sideNavOpen = true;
+        if (!this.sideBarOver) {
+          this.sideNav.open();
+        }
         this.router.navigate(['home'], {replaceUrl: true});
       } else {
-        this.sideNavOpen = false;
+        if (this.sideNav) {
+          this.sideNav.close();
+        }
         this.router.navigate(['login'], {replaceUrl: true});
       }
 

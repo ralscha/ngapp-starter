@@ -9,7 +9,7 @@ import {
   ConfirmationService,
   ConfirmDialogModule,
   ContextMenuModule,
-  DropdownModule,
+  DropdownModule, InputSwitchModule,
   InputTextModule,
   KeyFilterModule,
   MessageService,
@@ -53,7 +53,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     DropdownModule,
     ToastModule,
     CustomFormsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    InputSwitchModule
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]

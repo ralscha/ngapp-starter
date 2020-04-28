@@ -2,9 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {noop} from 'rxjs';
 import {tap} from 'rxjs/operators';
-import {LabelValue} from '../../model/label-value';
 import {HttpClient} from '@angular/common/http';
-import {MessageService} from 'primeng';
+import {MessageService, SelectItem} from 'primeng';
 import {CrudUpdateResponse} from '../../model/crud-update-response';
 import {NgForm} from '@angular/forms';
 import {translateValidationMessage} from '../../util';
@@ -17,7 +16,7 @@ import {translateValidationMessage} from '../../util';
 export class UserEditComponent implements OnInit {
 
   selectedObject: any;
-  authoritiesOptions: LabelValue[];
+  authoritiesOptions: SelectItem[];
 
   @ViewChild('form') form: NgForm;
 
