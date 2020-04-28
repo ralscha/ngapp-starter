@@ -25,7 +25,7 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {UserListComponent} from './user/user-list/user-list.component';
 import {UserEditComponent} from './user/user-edit/user-edit.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import {SidebarModule} from 'ng-sidebar';
 
 @NgModule({
   declarations: [
@@ -53,8 +53,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     DropdownModule,
     ToastModule,
     CustomFormsModule,
-    MatSidenavModule,
-    InputSwitchModule
+    InputSwitchModule,
+    SidebarModule
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]

@@ -1,15 +1,11 @@
-mat-sidenav-container {
+ng-sidebar-container {
   height: 100%;
 }
 
-mat-sidenav-content {
+div[ng-sidebar-content] {
   padding-top: 10px;
 }
 
-
-mat-sidenav {
-  width: 200px;
-}
 
 .toolbar {
   grid-area: toolbar;
@@ -30,6 +26,7 @@ main {
 }
 
 ul {
+  width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;

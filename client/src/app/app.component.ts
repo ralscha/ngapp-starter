@@ -1,7 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from './auth.service';
-import {MatSidenav} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +8,10 @@ import {MatSidenav} from '@angular/material/sidenav';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  @ViewChild(MatSidenav) sideNav: MatSidenav;
-
   authenticated = false;
   admin = false;
   sideBarOver = false;
+  sidebarOpen: boolean;
 
   constructor(private readonly router: Router,
               private readonly authService: AuthService) {
@@ -24,13 +22,11 @@ export class AppComponent {
 
       if (this.authenticated) {
         if (!this.sideBarOver) {
-          this.sideNav.open();
+          this.sidebarOpen = true;
         }
         this.router.navigate(['home'], {replaceUrl: true});
       } else {
-        if (this.sideNav) {
-          this.sideNav.close();
-        }
+        this.sidebarOpen = false;
         this.router.navigate(['login'], {replaceUrl: true});
       }
 
@@ -39,5 +35,14 @@ export class AppComponent {
 
   logout() {
     this.authService.logout().subscribe(() => this.router.navigate(['login'], {replaceUrl: true}));
+  }
+
+  onSideBarOverChange(event: any) {
+    this.sideBarOver = event.checked;
+    if (this.sideBarOver) {
+      this.sidebarOpen = false;
+    } else {
+      this.sidebarOpen = true;
+    }
   }
 }
