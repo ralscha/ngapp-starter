@@ -57,8 +57,11 @@
 			<groupId>org.mariadb.jdbc</groupId>
 			<artifactId>mariadb-java-client</artifactId>
 		</dependency>
-		<!-- <dependency> <groupId>com.microsoft.sqlserver</groupId> <artifactId>mssql-jdbc</artifactId> 
-			<version>8.2.2.jre11</version> </dependency> -->
+		<!-- <dependency> 
+		<groupId>com.microsoft.sqlserver</groupId> 
+		<artifactId>mssql-jdbc</artifactId> 
+		<version>8.2.2.jre13</version> 
+		</dependency> -->
 	</dependencies>
 
 	<build>
@@ -99,11 +102,11 @@
 		</plugins>
 	</build>
 
-  <profiles>
-    <profile>
-      <id>production</id>
-      <build>
-        <plugins>
+	<profiles>
+		<profile>
+			<id>production</id>
+			<build>
+				<plugins>
 					<plugin>
 						<groupId>com.github.eirslett</groupId>
 						<artifactId>frontend-maven-plugin</artifactId>
@@ -162,10 +165,10 @@
 							</execution>
 						</executions>
 					</plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 	<repositories>
 		<repository>
