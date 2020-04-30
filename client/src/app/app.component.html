@@ -11,6 +11,9 @@
       <li *ngIf="admin">
         <a routerLinkActive="active" (click)="sideBarOver && sidebar.close()" routerLink="/user-list">Users</a>
       </li>
+      <li class="sidebarmode">
+        <p-inputSwitch [ngModel]="sideBarOver" (onChange)="onSideBarOverChange($event)"></p-inputSwitch><span>Sidebar Over</span>
+      </li>
       <li>
         <a (click)="logout()" href="#">Logout</a>
       </li>
@@ -24,7 +27,6 @@
         <path fill="currentColor"
               d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>
       </svg>
-      <p-inputSwitch [class.hidden]="!authenticated" (onChange)="onSideBarOverChange($event)"></p-inputSwitch>
       <h2>Angular Starter App with PrimeNG</h2>
     </div>
 

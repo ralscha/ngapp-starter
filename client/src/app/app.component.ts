@@ -16,6 +16,12 @@ export class AppComponent {
   constructor(private readonly router: Router,
               private readonly authService: AuthService) {
 
+
+    const so = localStorage.getItem('sidebar-over');
+    if (so) {
+      this.sideBarOver = JSON.parse(so);
+    }
+
     this.authService.authority$.subscribe(authority => {
       this.authenticated = authority != null;
       this.admin = authority === 'ADMIN';
@@ -39,10 +45,7 @@ export class AppComponent {
 
   onSideBarOverChange(event: any) {
     this.sideBarOver = event.checked;
-    if (this.sideBarOver) {
-      this.sidebarOpen = false;
-    } else {
-      this.sidebarOpen = true;
-    }
+    this.sidebarOpen = false;
+    localStorage.setItem('sidebar-over', JSON.stringify(this.sideBarOver));
   }
 }

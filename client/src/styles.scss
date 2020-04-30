@@ -39,6 +39,11 @@ dd {
 
 html {
   height: 100%;
+  background-color: #f4f7fa;
+}
+
+.ng-sidebar__backdrop {
+  background-color: darken(#f4f7fa, 30%) !important;
 }
 
 body {
