@@ -10,7 +10,7 @@
     <label for="enabled">Enabled</label>
     <div>
       <p-checkbox [ngModel]="selectedObject?.enabled"
-                  binary="true" id="enabled" name="enabled"></p-checkbox>
+                  [binary]="true" id="enabled" name="enabled"></p-checkbox>
     </div>
 
     <label for="username">Username</label>
@@ -22,7 +22,7 @@
              autocomplete="username"
              id="username" maxlength="255"
              name="userName"
-             pInputText required spellcheck="false"/>
+             pInputText [required]="true" spellcheck="false"/>
 
       <div *ngIf="form.submitted && username.invalid" class="input-error">
         <span *ngIf="username.errors.required">Username is mandatory</span>
@@ -39,7 +39,7 @@
              autocomplete="email"
              email id="email" maxlength="255"
              name="email"
-             pInputText required spellcheck="false" type="email"/>
+             pInputText [required]="true" spellcheck="false" type="email"/>
 
       <div *ngIf="form.submitted && email.invalid" class="input-error">
         <span *ngIf="email.errors.required">Email is mandatory</span>
@@ -53,7 +53,7 @@
              [size]="50"
              id="firstName"
              maxlength="255"
-             name="firstName" pInputText required spellcheck="false"/>
+             name="firstName" pInputText [required]="true" spellcheck="false"/>
       <div *ngIf="form.submitted && firstName.invalid" class="input-error">
         <span *ngIf="firstName.errors.required">First Name is mandatory</span>
       </div>
@@ -65,7 +65,7 @@
              [size]="50"
              id="lastName"
              maxlength="255"
-             name="lastName" pInputText required spellcheck="false"/>
+             name="lastName" pInputText [required]="true" spellcheck="false"/>
       <div *ngIf="form.submitted && lastName.invalid" class="input-error">
         <span *ngIf="lastName.errors.required">Last Name is mandatory</span>
       </div>
@@ -75,7 +75,7 @@
     <div>
       <p-dropdown #authorities="ngModel" [autoDisplayFirst]="false" [ngModel]="selectedObject?.authorities"
                   [options]="authoritiesOptions" id="authority"
-                  name="authorities" required></p-dropdown>
+                  name="authorities" [required]="true"></p-dropdown>
       <div *ngIf="form.submitted && authorities.invalid" class="input-error">
         <span *ngIf="authorities.errors.required">Authority is mandatory</span>
       </div>
