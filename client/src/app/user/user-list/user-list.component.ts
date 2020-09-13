@@ -13,10 +13,12 @@ import {CrudDeleteResponse} from '../../model/crud-delete-response';
 })
 export class UserListComponent implements OnInit {
 
-  users: any[];
+  // tslint:disable-next-line:no-any
+  users: any[] = [];
   cols: ColumnDef[];
   loading = false;
   contextMenuItems: MenuItem[];
+  // tslint:disable-next-line:no-any
   selectedObject: any;
 
   constructor(private readonly httpClient: HttpClient,
@@ -51,24 +53,27 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
+    // tslint:disable-next-line:no-any
     this.httpClient.get<any[]>('/be/users', {withCredentials: true})
       .pipe(finalize(() => this.loading = false))
       .subscribe(response => this.users = response);
   }
 
+  // tslint:disable-next-line:no-any
   trackById(index: number, data: any): number {
     return data.id;
   }
 
-  editSelection() {
+  editSelection(): void {
     this.router.navigateByUrl('user-edit', {state: this.selectedObject});
   }
 
-  edit(rowdata: any = null) {
+  // tslint:disable-next-line:no-any
+  edit(rowdata: any = null): void {
     this.router.navigateByUrl('user-edit', {state: rowdata});
   }
 
-  private deleteUser() {
+  private deleteUser(): void {
     this.confirmationService.confirm({
       header: 'Delete',
       message: `Really delete ${this.selectedObject.userName}?`,

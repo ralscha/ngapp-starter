@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  async login(username: string, password: string) {
+  async login(username: string, password: string): Promise<void> {
     this.authService
       .login(username, password)
       .subscribe(authority => {
@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
         err => this.handleError(err));
   }
 
-  async handleError(error: any) {
+  // tslint:disable-next-line:no-any
+  async handleError(error: any): Promise<void> {
     let message: string;
     if (typeof error === 'string') {
       message = error;

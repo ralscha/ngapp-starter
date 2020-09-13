@@ -7,9 +7,9 @@ import {catchError, share, tap} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly authoritySubject = new BehaviorSubject<string>(undefined);
+  private readonly authoritySubject = new BehaviorSubject<string | null>(null);
   readonly authority$ = this.authoritySubject.asObservable();
-  private readonly authorityCall$: Observable<string>;
+  private readonly authorityCall$: Observable<string | null>;
 
   constructor(private readonly httpClient: HttpClient) {
     this.authorityCall$ = this.httpClient.get<string>('/be/authenticate', {
@@ -17,12 +17,12 @@ export class AuthService {
     })
       .pipe(
         tap(response => this.authoritySubject.next(response)),
-        catchError(_ => of(null)),
+        catchError(() => of(null)),
         share()
       );
   }
 
-  authenticate(): Observable<string> {
+  authenticate(): Observable<string | null> {
     return this.authorityCall$;
   }
 
@@ -30,12 +30,12 @@ export class AuthService {
     return this.authoritySubject.getValue() != null;
   }
 
-  login(username: string, password: string): Observable<string> {
+  login(username: string, password: string): Observable<string | null> {
     const body = new HttpParams().set('username', username).set('password', password);
     return this.httpClient.post<string>('/be/login', body, {withCredentials: true})
       .pipe(
         tap(authority => this.authoritySubject.next(authority)),
-        catchError(error => of(null))
+        catchError(() => of(null))
       );
   }
 

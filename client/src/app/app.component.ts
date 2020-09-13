@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from './auth.service';
 
@@ -8,10 +8,10 @@ import {AuthService} from './auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  authenticated = false;
+  authenticated!: boolean;
   admin = false;
   sideBarOver = false;
-  sidebarOpen: boolean;
+  sidebarOpen = false;
 
   constructor(private readonly router: Router,
               private readonly authService: AuthService) {
@@ -39,11 +39,12 @@ export class AppComponent {
     });
   }
 
-  logout() {
+  logout(): void {
     this.authService.logout().subscribe(() => this.router.navigate(['login'], {replaceUrl: true}));
   }
 
-  onSideBarOverChange(event: any) {
+  // tslint:disable-next-line:no-any
+  onSideBarOverChange(event: any): void {
     this.sideBarOver = event.checked;
     this.sidebarOpen = false;
     localStorage.setItem('sidebar-over', JSON.stringify(this.sideBarOver));

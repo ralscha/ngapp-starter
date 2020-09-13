@@ -9,24 +9,24 @@
 
     <label for="enabled">Enabled</label>
     <div>
-      <p-checkbox [ngModel]="selectedObject?.enabled"
-                  [binary]="true" id="enabled" name="enabled"></p-checkbox>
+      <p-checkbox [binary]="true"
+                  [ngModel]="selectedObject?.enabled" id="enabled" name="enabled"></p-checkbox>
     </div>
 
     <label for="username">Username</label>
     <div>
       <input #username="ngModel"
              [ngModel]="selectedObject?.userName"
+             [required]="true"
              [size]="50"
              autocapitalize="off"
-             autocomplete="username"
-             id="username" maxlength="255"
-             name="userName"
-             pInputText [required]="true" spellcheck="false"/>
+             autocomplete="username" id="username"
+             maxlength="255"
+             name="userName" pInputText spellcheck="false"/>
 
       <div *ngIf="form.submitted && username.invalid" class="input-error">
-        <span *ngIf="username.errors.required">Username is mandatory</span>
-        <span *ngIf="username.errors.server">{{username.errors.server}}</span>
+        <span *ngIf="username.errors?.required">Username is mandatory</span>
+        <span *ngIf="username.errors?.server">{{username.errors?.server}}</span>
       </div>
     </div>
 
@@ -34,50 +34,50 @@
     <div>
       <input #email="ngModel"
              [ngModel]="selectedObject?.email"
+             [required]="true"
              [size]="50"
              autocapitalize="off"
-             autocomplete="email"
-             email id="email" maxlength="255"
-             name="email"
-             pInputText [required]="true" spellcheck="false" type="email"/>
+             autocomplete="email" email id="email"
+             maxlength="255"
+             name="email" pInputText spellcheck="false" type="email"/>
 
       <div *ngIf="form.submitted && email.invalid" class="input-error">
-        <span *ngIf="email.errors.required">Email is mandatory</span>
-        <span *ngIf="email.errors.email">Invalid email address</span>
+        <span *ngIf="email.errors?.required">Email is mandatory</span>
+        <span *ngIf="email.errors?.email">Invalid email address</span>
       </div>
     </div>
 
     <label for="firstName">First Name</label>
     <div>
       <input #firstName="ngModel" [ngModel]="selectedObject?.firstName"
+             [required]="true"
              [size]="50"
              id="firstName"
-             maxlength="255"
-             name="firstName" pInputText [required]="true" spellcheck="false"/>
+             maxlength="255" name="firstName" pInputText spellcheck="false"/>
       <div *ngIf="form.submitted && firstName.invalid" class="input-error">
-        <span *ngIf="firstName.errors.required">First Name is mandatory</span>
+        <span *ngIf="firstName.errors?.required">First Name is mandatory</span>
       </div>
     </div>
 
     <label for="lastName">Last Name</label>
     <div>
       <input #lastName="ngModel" [ngModel]="selectedObject?.lastName"
+             [required]="true"
              [size]="50"
              id="lastName"
-             maxlength="255"
-             name="lastName" pInputText [required]="true" spellcheck="false"/>
+             maxlength="255" name="lastName" pInputText spellcheck="false"/>
       <div *ngIf="form.submitted && lastName.invalid" class="input-error">
-        <span *ngIf="lastName.errors.required">Last Name is mandatory</span>
+        <span *ngIf="lastName.errors?.required">Last Name is mandatory</span>
       </div>
     </div>
 
     <label for="authority">Authority</label>
     <div>
       <p-dropdown #authorities="ngModel" [autoDisplayFirst]="false" [ngModel]="selectedObject?.authorities"
-                  [options]="authoritiesOptions" id="authority"
-                  name="authorities" [required]="true"></p-dropdown>
+                  [options]="authoritiesOptions" [required]="true"
+                  id="authority" name="authorities"></p-dropdown>
       <div *ngIf="form.submitted && authorities.invalid" class="input-error">
-        <span *ngIf="authorities.errors.required">Authority is mandatory</span>
+        <span *ngIf="authorities.errors?.required">Authority is mandatory</span>
       </div>
     </div>
 

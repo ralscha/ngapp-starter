@@ -1,4 +1,5 @@
-export function translateValidationMessage({code, args}): string {
+// tslint:disable-next-line:no-any
+export function translateValidationMessage({code, args}: { code: string, args: any[] }): string {
   switch (code) {
     case 'DecimalMax':
       return `Must be less than ${args[1] === true ? 'or equal to ' : ''}${args[2].defaultMessage}`;

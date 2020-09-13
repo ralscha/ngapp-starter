@@ -15,10 +15,11 @@ import {translateValidationMessage} from '../../util';
 })
 export class UserEditComponent implements OnInit {
 
+  // tslint:disable-next-line:no-any
   selectedObject: any;
   authoritiesOptions: SelectItem[];
 
-  @ViewChild('form') form: NgForm;
+  @ViewChild('form') form!: NgForm;
 
   constructor(private readonly activatedRoute: ActivatedRoute,
               private readonly httpClient: HttpClient,
@@ -32,7 +33,8 @@ export class UserEditComponent implements OnInit {
       .pipe(tap(() => this.selectedObject = window.history.state)).subscribe(noop);
   }
 
-  save(value: any) {
+  // tslint:disable-next-line:no-any
+  save(value: any): void {
     this.httpClient.post<CrudUpdateResponse>('/be/user-save', {id: this.selectedObject.id, ...value}, {withCredentials: true})
       .subscribe(response => {
         if (response.success) {
@@ -53,11 +55,13 @@ export class UserEditComponent implements OnInit {
           if (response.fieldErrors) {
             for (const [key, values] of Object.entries(response.fieldErrors)) {
               const comp = this.form.form.get(key);
-              const errors = [];
-              for (const v of values) {
-                errors.push(translateValidationMessage(v));
+              if (comp) {
+                const errors = [];
+                for (const v of values) {
+                  errors.push(translateValidationMessage(v));
+                }
+                comp.setErrors({server: errors.join(', ')});
               }
-              comp.setErrors({server: errors.join(', ')});
             }
           }
         }
