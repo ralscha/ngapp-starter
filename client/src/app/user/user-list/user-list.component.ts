@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ColumnDef} from '../../model/column-def';
 import {finalize} from 'rxjs/operators';
-import {ConfirmationService, MenuItem, MessageService} from 'primeng';
 import {Router} from '@angular/router';
 import {CrudDeleteResponse} from '../../model/crud-delete-response';
+import {ConfirmationService, MenuItem, MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-user-list',

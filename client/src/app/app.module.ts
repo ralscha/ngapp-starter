@@ -3,21 +3,6 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {
-  ButtonModule,
-  CheckboxModule,
-  ConfirmationService,
-  ConfirmDialogModule,
-  ContextMenuModule,
-  DropdownModule,
-  InputSwitchModule,
-  InputTextModule,
-  KeyFilterModule,
-  MessageService,
-  PasswordModule,
-  TableModule,
-  ToastModule
-} from 'primeng';
 import {FormsModule} from '@angular/forms';
 import {CustomFormsModule} from 'ngx-custom-validators';
 import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
@@ -27,6 +12,18 @@ import {LoginComponent} from './login/login.component';
 import {UserListComponent} from './user/user-list/user-list.component';
 import {UserEditComponent} from './user/user-edit/user-edit.component';
 import {SidebarModule} from 'ng-sidebar';
+import {InputTextModule} from 'primeng/inputtext';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {TableModule} from 'primeng/table';
+import {ContextMenuModule} from 'primeng/contextmenu';
+import {KeyFilterModule} from 'primeng/keyfilter';
+import {CheckboxModule} from 'primeng/checkbox';
+import {ButtonModule} from 'primeng/button';
+import {PasswordModule} from 'primeng/password';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {ConfirmationService, MessageService} from 'primeng/api';
+import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   declarations: [

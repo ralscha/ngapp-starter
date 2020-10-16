@@ -3,10 +3,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {noop} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
-import {MessageService, SelectItem} from 'primeng';
 import {CrudUpdateResponse} from '../../model/crud-update-response';
 import {NgForm} from '@angular/forms';
 import {translateValidationMessage} from '../../util';
+import {MessageService, SelectItem} from 'primeng/api';
 
 @Component({
   selector: 'app-user-edit',

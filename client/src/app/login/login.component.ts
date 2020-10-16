@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
-import {MessageService} from 'primeng';
 import {take} from 'rxjs/operators';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-login',
