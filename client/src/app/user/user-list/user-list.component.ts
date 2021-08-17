@@ -13,12 +13,12 @@ import {ConfirmationService, MenuItem, MessageService} from 'primeng/api';
 })
 export class UserListComponent implements OnInit {
 
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   users: any[] = [];
   cols: ColumnDef[];
   loading = false;
   contextMenuItems: MenuItem[];
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   selectedObject: any;
 
   constructor(private readonly httpClient: HttpClient,
@@ -53,13 +53,13 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    // tslint:disable-next-line:no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     this.httpClient.get<any[]>('/be/users', {withCredentials: true})
       .pipe(finalize(() => this.loading = false))
       .subscribe(response => this.users = response);
   }
 
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   trackById(index: number, data: any): number {
     return data.id;
   }
@@ -68,7 +68,7 @@ export class UserListComponent implements OnInit {
     this.router.navigateByUrl('user-edit', {state: this.selectedObject});
   }
 
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   edit(rowdata: any = null): void {
     this.router.navigateByUrl('user-edit', {state: rowdata});
   }

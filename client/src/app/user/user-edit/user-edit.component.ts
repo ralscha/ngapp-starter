@@ -15,7 +15,7 @@ import {MessageService, SelectItem} from 'primeng/api';
 })
 export class UserEditComponent implements OnInit {
 
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   selectedObject: any;
   authoritiesOptions: SelectItem[];
 
@@ -33,7 +33,7 @@ export class UserEditComponent implements OnInit {
       .pipe(tap(() => this.selectedObject = window.history.state)).subscribe(noop);
   }
 
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   save(value: any): void {
     this.httpClient.post<CrudUpdateResponse>('/be/user-save', {id: this.selectedObject.id, ...value}, {withCredentials: true})
       .subscribe(response => {

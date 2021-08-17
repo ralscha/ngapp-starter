@@ -43,7 +43,7 @@ export class AppComponent {
     this.authService.logout().subscribe(() => this.router.navigate(['login'], {replaceUrl: true}));
   }
 
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSideBarOverChange(event: any): void {
     this.sideBarOver = event.checked;
     this.sidebarOpen = false;
