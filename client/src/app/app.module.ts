@@ -4,7 +4,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
-import {CustomFormsModule} from 'ngx-custom-validators';
 import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
 import {LoadingBarModule} from '@ngx-loading-bar/core';
 import {HomeComponent} from './home/home.component';
@@ -50,7 +49,6 @@ import {ToastModule} from 'primeng/toast';
     PasswordModule,
     DropdownModule,
     ToastModule,
-    CustomFormsModule,
     InputSwitchModule,
     SidebarModule
   ],
