@@ -84,8 +84,8 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
-          }
-        },
+            }
+          },
           "defaultConfiguration": "production"
         },
         "serve": {
@@ -116,8 +116,9 @@
       }
     }
   },
-  "defaultProject": "app",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
