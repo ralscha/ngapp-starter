@@ -4,21 +4,20 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+@EnableMethodSecurity(prePostEnabled = true)
+public class SecurityConfig {
 
 	@Bean
-	@Override
-	protected AuthenticationManager authenticationManager() throws Exception {
+	AuthenticationManager authenticationManager() {
 		return authentication -> {
 			throw new AuthenticationServiceException(
 					"Cannot authenticate " + authentication);
@@ -30,18 +29,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new Argon2PasswordEncoder(16, 32, 8, 1 << 16, 4);
 	}
 
-	@Override
-	public void configure(WebSecurity web) {
-		web.ignoring().antMatchers("/", "/assets/**/*", "/svg/**/*", "/*.br", "/*.gz", "/*.html", "/*.js", "/*.css");
+	@Bean
+	public WebSecurityCustomizer webSecurityCustomizer() {
+		return web -> web.ignoring().requestMatchers("/", "/assets/**/*", "/svg/**/*",
+				"/*.br", "/*.gz", "/*.html", "/*.js", "/*.css");
 	}
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf(customizer -> customizer.disable()).authorizeRequests(customizer -> {
-			customizer.antMatchers("/be/authenticate", "/be/login").permitAll()
-					.anyRequest().authenticated();
-		}).logout(customizer -> customizer.logoutUrl("/be/logout")
-				.logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler()));
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http.csrf(customizer -> customizer.disable())
+				.authorizeHttpRequests(customizer -> {
+					customizer.requestMatchers("/be/authenticate", "/be/login")
+							.permitAll().anyRequest().authenticated();
+				})
+				.logout(customizer -> customizer.logoutUrl("/be/logout")
+						.logoutSuccessHandler(
+								new HttpStatusReturningLogoutSuccessHandler()));
+		return http.build();
 	}
 
 }
