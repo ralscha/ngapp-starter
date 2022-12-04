@@ -25,8 +25,8 @@
              name="userName" pInputText spellcheck="false"/>
 
       <div *ngIf="form.submitted && username.invalid" class="input-error">
-        <span *ngIf="username.errors?.required">Username is mandatory</span>
-        <span *ngIf="username.errors?.server">{{username.errors?.server}}</span>
+        <span *ngIf="username.errors?.['required']">Username is mandatory</span>
+        <span *ngIf="username.errors?.['server']">{{username.errors?.['server']}}</span>
       </div>
     </div>
 
@@ -42,8 +42,8 @@
              name="email" pInputText spellcheck="false" type="email"/>
 
       <div *ngIf="form.submitted && email.invalid" class="input-error">
-        <span *ngIf="email.errors?.required">Email is mandatory</span>
-        <span *ngIf="email.errors?.email">Invalid email address</span>
+        <span *ngIf="email.errors?.['required']">Email is mandatory</span>
+        <span *ngIf="email.errors?.['email']">Invalid email address</span>
       </div>
     </div>
 
@@ -55,7 +55,7 @@
              id="firstName"
              maxlength="255" name="firstName" pInputText spellcheck="false"/>
       <div *ngIf="form.submitted && firstName.invalid" class="input-error">
-        <span *ngIf="firstName.errors?.required">First Name is mandatory</span>
+        <span *ngIf="firstName.errors?.['required']">First Name is mandatory</span>
       </div>
     </div>
 
@@ -67,7 +67,7 @@
              id="lastName"
              maxlength="255" name="lastName" pInputText spellcheck="false"/>
       <div *ngIf="form.submitted && lastName.invalid" class="input-error">
-        <span *ngIf="lastName.errors?.required">Last Name is mandatory</span>
+        <span *ngIf="lastName.errors?.['required']">Last Name is mandatory</span>
       </div>
     </div>
 
@@ -77,7 +77,7 @@
                   [options]="authoritiesOptions" [required]="true"
                   id="authority" name="authorities"></p-dropdown>
       <div *ngIf="form.submitted && authorities.invalid" class="input-error">
-        <span *ngIf="authorities.errors?.required">Authority is mandatory</span>
+        <span *ngIf="authorities.errors?.['required']">Authority is mandatory</span>
       </div>
     </div>
 
