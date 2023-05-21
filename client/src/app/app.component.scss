@@ -1,11 +1,11 @@
-ng-sidebar-container {
+p-sidebar {
   height: 100%;
 }
 
-div[ng-sidebar-content] {
-  padding-top: 10px;
+div[p-sidebar] {
+  margin: 0;
+  padding: 0;
 }
-
 
 .toolbar {
   grid-area: toolbar;
@@ -27,12 +27,13 @@ main {
 }
 
 ul {
-  width: 200px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%;
-  padding-top: 20px;
   background-color: #2f523e;
 }
 

@@ -10,26 +10,16 @@ import {AuthService} from './auth.service';
 export class AppComponent {
   authenticated!: boolean;
   admin = false;
-  sideBarOver = false;
   sidebarOpen = false;
 
   constructor(private readonly router: Router,
               private readonly authService: AuthService) {
-
-
-    const so = localStorage.getItem('sidebar-over');
-    if (so) {
-      this.sideBarOver = JSON.parse(so);
-    }
 
     this.authService.authority$.subscribe(authority => {
       this.authenticated = authority != null;
       this.admin = authority === 'ADMIN';
 
       if (this.authenticated) {
-        if (!this.sideBarOver) {
-          this.sidebarOpen = true;
-        }
         this.router.navigate(['home'], {replaceUrl: true});
       } else {
         this.sidebarOpen = false;
@@ -43,10 +33,4 @@ export class AppComponent {
     this.authService.logout().subscribe(() => this.router.navigate(['login'], {replaceUrl: true}));
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onSideBarOverChange(event: any): void {
-    this.sideBarOver = event.checked;
-    this.sidebarOpen = false;
-    localStorage.setItem('sidebar-over', JSON.stringify(this.sideBarOver));
-  }
 }

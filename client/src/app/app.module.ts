@@ -4,13 +4,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
-import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
-import {LoadingBarModule} from '@ngx-loading-bar/core';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {UserListComponent} from './user/user-list/user-list.component';
 import {UserEditComponent} from './user/user-edit/user-edit.component';
-import {SidebarModule} from 'ng-sidebar';
 import {InputTextModule} from 'primeng/inputtext';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {TableModule} from 'primeng/table';
@@ -23,6 +20,8 @@ import {DropdownModule} from 'primeng/dropdown';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {ToastModule} from 'primeng/toast';
+import {SidebarModule} from 'primeng/sidebar';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -38,8 +37,6 @@ import {ToastModule} from 'primeng/toast';
     AppRoutingModule,
     FormsModule,
     InputTextModule,
-    LoadingBarHttpClientModule,
-    LoadingBarModule,
     ConfirmDialogModule,
     TableModule,
     ContextMenuModule,
@@ -50,7 +47,8 @@ import {ToastModule} from 'primeng/toast';
     DropdownModule,
     ToastModule,
     InputSwitchModule,
-    SidebarModule
+    SidebarModule,
+    HttpClientModule
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]

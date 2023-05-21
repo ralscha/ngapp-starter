@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.6</version>
+		<version>3.1.0</version>
 		<relativePath />
 	</parent>
 	<groupId>ch.rasc</groupId>
@@ -16,7 +16,7 @@
 	<description>Angular / Spring Boot starter app</description>
 
 	<properties>
-		<java.version>17</java.version>
+		<java.version>20</java.version>
 	</properties>
 
 	<dependencies>
@@ -35,6 +35,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-docker-compose</artifactId>
+			<optional>true</optional>			
 		</dependency>
 		<dependency>
 			<groupId>org.liquibase</groupId>
@@ -59,11 +64,6 @@
 			<groupId>org.mariadb.jdbc</groupId>
 			<artifactId>mariadb-java-client</artifactId>
 		</dependency>
-		<!-- <dependency> 
-		<groupId>com.microsoft.sqlserver</groupId> 
-		<artifactId>mssql-jdbc</artifactId> 
-		<version>8.2.2.jre13</version> 
-		</dependency> -->
 	</dependencies>
 
 	<build>
@@ -142,7 +142,7 @@
 							</execution>
 						</executions>
 						<configuration>
-							<nodeVersion>v18.14.2</nodeVersion>
+							<nodeVersion>v18.16.0</nodeVersion>
 							<workingDirectory>${basedir}/../client</workingDirectory>
 							<environmentVariables>
 								<NODE_ENV>production</NODE_ENV>
