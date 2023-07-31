@@ -58,7 +58,7 @@ public class UserController {
 		if (user.getId() != null) {
 			query.where(QUser.user.id.ne(user.getId()));
 		}
-		if (query.fetchCount() > 0) {
+		if (query.fetch().size() > 0) {
 			bindingResult.rejectValue("userName", "Username already taken");
 			return CrudUpdateResponse.error(bindingResult);
 		}
