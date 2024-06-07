@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {ColumnDef} from '../../model/column-def';
 import {finalize} from 'rxjs/operators';
 import {Router} from '@angular/router';

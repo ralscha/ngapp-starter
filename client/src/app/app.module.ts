@@ -21,37 +21,30 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {ToastModule} from 'primeng/toast';
 import {SidebarModule} from 'primeng/sidebar';
-import {HttpClientModule} from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    LoginComponent,
-    UserListComponent,
-    UserEditComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    FormsModule,
-    InputTextModule,
-    ConfirmDialogModule,
-    TableModule,
-    ContextMenuModule,
-    KeyFilterModule,
-    CheckboxModule,
-    ButtonModule,
-    PasswordModule,
-    DropdownModule,
-    ToastModule,
-    InputSwitchModule,
-    SidebarModule,
-    HttpClientModule
-  ],
-  providers: [MessageService, ConfirmationService],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HomeComponent,
+        LoginComponent,
+        UserListComponent,
+        UserEditComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FormsModule,
+        InputTextModule,
+        ConfirmDialogModule,
+        TableModule,
+        ContextMenuModule,
+        KeyFilterModule,
+        CheckboxModule,
+        ButtonModule,
+        PasswordModule,
+        DropdownModule,
+        ToastModule,
+        InputSwitchModule,
+        SidebarModule], providers: [MessageService, ConfirmationService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {
 }
