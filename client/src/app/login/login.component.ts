@@ -3,11 +3,15 @@ import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 import {take} from 'rxjs/operators';
 import {MessageService} from 'primeng/api';
+import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonDirective } from 'primeng/button';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    imports: [FormsModule, InputTextModule, ButtonDirective]
 })
 export class LoginComponent implements OnInit {
 

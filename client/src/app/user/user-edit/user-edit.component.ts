@@ -1,17 +1,23 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {noop} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import {CrudUpdateResponse} from '../../model/crud-update-response';
-import {NgForm} from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import {translateValidationMessage} from '../../util';
 import {MessageService, SelectItem} from 'primeng/api';
+import { ButtonDirective, Button } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
+import { PasswordModule } from 'primeng/password';
 
 @Component({
-  selector: 'app-user-edit',
-  templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.scss']
+    selector: 'app-user-edit',
+    templateUrl: './user-edit.component.html',
+    styleUrls: ['./user-edit.component.scss'],
+    imports: [FormsModule, ButtonDirective, RouterLink, CheckboxModule, InputTextModule, DropdownModule, PasswordModule, Button]
 })
 export class UserEditComponent implements OnInit {
 

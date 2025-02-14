@@ -1,3 +1,5 @@
+@use "sass:color";
+
 :root {
   --admin-header-height: 70px;
   --admin-nav-width: 250px;
@@ -56,7 +58,7 @@ html {
 }
 
 .ng-sidebar__backdrop {
-  background-color: darken(#f4f7fa, 30%) !important;
+  background-color: color.adjust(#f4f7fa, $lightness: -30%) !important;
 }
 
 body {

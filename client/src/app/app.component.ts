@@ -1,11 +1,14 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import {AuthService} from './auth.service';
+import { ToastModule } from 'primeng/toast';
+import { SidebarModule } from 'primeng/sidebar';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    imports: [ToastModule, SidebarModule, RouterLink, RouterLinkActive, RouterOutlet]
 })
 export class AppComponent {
   authenticated!: boolean;

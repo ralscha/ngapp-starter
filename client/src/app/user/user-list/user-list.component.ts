@@ -4,12 +4,18 @@ import {ColumnDef} from '../../model/column-def';
 import {finalize} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {CrudDeleteResponse} from '../../model/crud-delete-response';
-import {ConfirmationService, MenuItem, MessageService} from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService, PrimeTemplate } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TableModule } from 'primeng/table';
+import { ButtonDirective } from 'primeng/button';
+import { NgClass } from '@angular/common';
+import { ContextMenuModule } from 'primeng/contextmenu';
 
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+    selector: 'app-user-list',
+    templateUrl: './user-list.component.html',
+    styleUrls: ['./user-list.component.scss'],
+    imports: [ConfirmDialogModule, TableModule, PrimeTemplate, ButtonDirective, NgClass, ContextMenuModule]
 })
 export class UserListComponent implements OnInit {
 
