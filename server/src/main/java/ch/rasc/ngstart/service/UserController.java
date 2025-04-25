@@ -80,10 +80,10 @@ public class UserController {
 		if (!isLastAdmin(userId)) {
 			User user = this.jpaQueryFactory.getEntityManager().find(User.class, userId);
 			this.jpaQueryFactory.getEntityManager().remove(user);
-			return CrudDeleteResponse.success();
+			return CrudDeleteResponse.buildSuccess();
 		}
 
-		return CrudDeleteResponse.error("Can't delete last ADMIN user");
+		return CrudDeleteResponse.buildError("Can't delete last ADMIN user");
 	}
 
 	private boolean isLastAdmin(Long id) {

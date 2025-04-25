@@ -1,10 +1,13 @@
-version: '3.8'
-
 services:
   ngdb:
-    image: mariadb
+    image: postgres
+    shm_size: 128mb
     environment:
-      MARIADB_DATABASE: db
-      MARIADB_ROOT_PASSWORD: password
+      POSTGRES_PASSWORD: password
     ports:
-      - "3306:3306"
+      - "5432:5432"
+    volumes:
+      - ngdb_data:/var/lib/postgresql/data
+
+volumes:
+  ngdb_data:

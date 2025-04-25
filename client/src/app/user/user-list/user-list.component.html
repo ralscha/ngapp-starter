@@ -1,19 +1,19 @@
 <p-confirmDialog icon="pi pi-exclamation-triangle"></p-confirmDialog>
-<p-table #dt [(contextMenuSelection)]="selectedObject"
-  [(selection)]="selectedObject"
-  [columns]="cols"
-  [contextMenu]="cm"
-  [loading]="loading"
-  [rowTrackBy]="trackById"
-  [scrollable]="true"
-  [value]="users" dataKey="id"
-  selectionMode="single"
-  stateKey="/user-list" stateStorage="session">
+<p-table [(contextMenuSelection)]="selectedObject"
+         [(selection)]="selectedObject"
+         [columns]="cols"
+         [contextMenu]="cm"
+         [loading]="loading"
+         [rowTrackBy]="trackById"
+         [scrollable]="true"
+         [value]="users" dataKey="id"
+         selectionMode="single"
+         stateKey="/user-list" stateStorage="session">
   <ng-template pTemplate="caption">
     <div class="table-header">
       <span class="title">Users</span>
       <div class="buttons">
-        <button (click)="edit()" icon="fas fa-plus" label="New" pButton type="button"></button>
+        <p-button (click)="edit()" icon="fas fa-plus" label="New" type="button"></p-button>
       </div>
     </div>
   </ng-template>
@@ -24,7 +24,7 @@
         <th
           [ngClass]="{'col-center': col.align === 'center'}"
           [pSortableColumn]="col.field">
-          {{col.header}}
+          {{ col.header }}
           <p-sortIcon [field]="col.field"></p-sortIcon>
         </th>
       }
@@ -32,10 +32,11 @@
   </ng-template>
   <ng-template let-columns="columns" let-rowData pTemplate="body">
     <tr (dblclick)="edit(rowData)" [attr.id]="rowData.id" [pContextMenuRow]="rowData"
-      [pSelectableRow]="rowData">
+        [pSelectableRow]="rowData">
       @for (col of columns; track col) {
         <td
-        [ngClass]="{'col-right': col.align === 'right', 'col-center': col.align === 'center'}">{{rowData[col.field]}}</td>
+          [ngClass]="{'col-right': col.align === 'right', 'col-center': col.align === 'center'}">{{ rowData[col.field] }}
+        </td>
       }
     </tr>
   </ng-template>

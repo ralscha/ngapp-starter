@@ -1,43 +1,44 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 import {take} from 'rxjs/operators';
 import {MessageService} from 'primeng/api';
-import { FormsModule } from '@angular/forms';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonDirective } from 'primeng/button';
+import {FormsModule} from '@angular/forms';
+import {InputTextModule} from 'primeng/inputtext';
+import {Button} from 'primeng/button';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
-    imports: [FormsModule, InputTextModule, ButtonDirective]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss',
+  imports: [FormsModule, InputTextModule, Button]
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private readonly router: Router,
-              private readonly authService: AuthService,
-              private readonly messageService: MessageService) {
-  }
+  readonly #router = inject(Router);
+  readonly #authService = inject(AuthService);
+  readonly #messageService = inject(MessageService);
 
   ngOnInit(): void {
     // is the user already authenticated
-    this.authService.authority$.pipe(take(1)).subscribe(authority => {
+    this.#authService.authority$.pipe(take(1)).subscribe(authority => {
       if (authority !== null) {
-        this.router.navigate(['home'], {replaceUrl: true});
+        this.#router.navigate(['home'], {replaceUrl: true});
       }
     });
   }
 
   async login(username: string, password: string): Promise<void> {
-    this.authService
+    this.#authService
       .login(username, password)
-      .subscribe(authority => {
+      .subscribe({
+        next: (authority) => {
           if (authority === null) {
             this.handleError('Login failed');
           }
         },
-        err => this.handleError(err));
+        error: err => this.handleError(err)
+      });
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
       message = `Unexpected error: ${error.statusText}`;
     }
 
-    this.messageService.add({key: 'tst', severity: 'error', summary: 'Error', detail: message});
+    this.#messageService.add({key: 'tst', severity: 'error', summary: 'Error', detail: message});
   }
 
 }

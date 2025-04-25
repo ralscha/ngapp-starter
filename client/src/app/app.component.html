@@ -1,13 +1,13 @@
 <p-toast [baseZIndex]="10000" key="tst" position="top-right"></p-toast>
-<p-sidebar #sidebar [(visible)]="sidebarOpen">
+<p-drawer #drawer [(visible)]="sidebarOpen">
   @if (authenticated) {
     <ul>
       <li>
-        <a (click)="sidebar.close($event)" routerLink="/home" routerLinkActive="active">Home</a>
+        <a (click)="drawer.close($event)" routerLink="/home" routerLinkActive="active">Home</a>
       </li>
       @if (admin) {
         <li>
-          <a (click)="sidebar.close($event)" routerLink="/user-list" routerLinkActive="active">Users</a>
+          <a (click)="drawer.close($event)" routerLink="/user-list" routerLinkActive="active">Users</a>
         </li>
       }
       <li>
@@ -15,17 +15,17 @@
       </li>
     </ul>
   }
-</p-sidebar>
+</p-drawer>
 <div>
 
   <div class="toolbar">
     <svg (click)="sidebarOpen = !sidebarOpen" [class.hidden]="!authenticated" aria-hidden="true"
-      class="svg-inline--fa fa-bars fa-w-14"
-      data-icon="bars" data-prefix="fas"
-      focusable="false" role="img" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+         class="svg-inline--fa fa-bars fa-w-14"
+         data-icon="bars" data-prefix="fas"
+         focusable="false" role="img" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
-      fill="currentColor"></path>
+        fill="currentColor"></path>
     </svg>
     <h2>Angular Starter App with PrimeNG</h2>
   </div>
@@ -34,4 +34,3 @@
     <router-outlet></router-outlet>
   </main>
 </div>
-

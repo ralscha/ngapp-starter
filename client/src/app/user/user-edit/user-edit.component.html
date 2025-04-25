@@ -3,26 +3,26 @@
   <div class="card">
 
     <div class="card-title">
-      <button icon="fas fa-arrow-left" label="Back" pButton routerLink="/user-list" type="button"></button>
+      <p-button icon="fas fa-arrow-left" label="Back" routerLink="/user-list" type="button"></p-button>
       <h2>User</h2>
     </div>
 
     <label for="enabled">Enabled</label>
     <div>
       <p-checkbox [binary]="true"
-      [ngModel]="selectedObject?.enabled" id="enabled" name="enabled"></p-checkbox>
+                  [ngModel]="selectedObject?.enabled" id="enabled" name="enabled"></p-checkbox>
     </div>
 
     <label for="username">Username</label>
     <div>
       <input #username="ngModel"
-        [ngModel]="selectedObject?.userName"
-        [required]="true"
-        [size]="50"
-        autocapitalize="off"
-        autocomplete="username" id="username"
-        maxlength="255"
-        name="userName" pInputText spellcheck="false"/>
+             [ngModel]="selectedObject?.userName"
+             [required]="true"
+             [size]="50"
+             autocapitalize="off"
+             autocomplete="username" id="username"
+             maxlength="255"
+             name="userName" pInputText spellcheck="false"/>
 
       @if (form.submitted && username.invalid) {
         <div class="input-error">
@@ -30,7 +30,7 @@
             <span>Username is mandatory</span>
           }
           @if (username.errors?.['server']) {
-            <span>{{username.errors?.['server']}}</span>
+            <span>{{ username.errors?.['server'] }}</span>
           }
         </div>
       }
@@ -39,13 +39,13 @@
     <label for="email">Email</label>
     <div>
       <input #email="ngModel"
-        [ngModel]="selectedObject?.email"
-        [required]="true"
-        [size]="50"
-        autocapitalize="off"
-        autocomplete="email" email id="email"
-        maxlength="255"
-        name="email" pInputText spellcheck="false" type="email"/>
+             [ngModel]="selectedObject?.email"
+             [required]="true"
+             [size]="50"
+             autocapitalize="off"
+             autocomplete="email" email id="email"
+             maxlength="255"
+             name="email" pInputText spellcheck="false" type="email"/>
 
       @if (form.submitted && email.invalid) {
         <div class="input-error">
@@ -62,10 +62,10 @@
     <label for="firstName">First Name</label>
     <div>
       <input #firstName="ngModel" [ngModel]="selectedObject?.firstName"
-        [required]="true"
-        [size]="50"
-        id="firstName"
-        maxlength="255" name="firstName" pInputText spellcheck="false"/>
+             [required]="true"
+             [size]="50"
+             id="firstName"
+             maxlength="255" name="firstName" pInputText spellcheck="false"/>
       @if (form.submitted && firstName.invalid) {
         <div class="input-error">
           @if (firstName.errors?.['required']) {
@@ -78,10 +78,10 @@
     <label for="lastName">Last Name</label>
     <div>
       <input #lastName="ngModel" [ngModel]="selectedObject?.lastName"
-        [required]="true"
-        [size]="50"
-        id="lastName"
-        maxlength="255" name="lastName" pInputText spellcheck="false"/>
+             [required]="true"
+             [size]="50"
+             id="lastName"
+             maxlength="255" name="lastName" pInputText spellcheck="false"/>
       @if (form.submitted && lastName.invalid) {
         <div class="input-error">
           @if (lastName.errors?.['required']) {
@@ -93,9 +93,9 @@
 
     <label for="authority">Authority</label>
     <div>
-      <p-dropdown #authorities="ngModel" [autoDisplayFirst]="false" [ngModel]="selectedObject?.authorities"
-        [options]="authoritiesOptions" [required]="true"
-      id="authority" name="authorities"></p-dropdown>
+      <p-select #authorities="ngModel" [ngModel]="selectedObject?.authorities"
+                [options]="authoritiesOptions" [required]="true"
+                id="authority" name="authorities"></p-select>
       @if (form.submitted && authorities.invalid) {
         <div class="input-error">
           @if (authorities.errors?.['required']) {
@@ -108,13 +108,13 @@
     <label for="passwordHash">New Password</label>
     <div>
       <input [ngModel]="selectedObject?.passwordHash"
-        [size]="50"
-        autocomplete="new-password"
-        id="passwordHash"
-        name="passwordHash"
-        pInputText pPassword
-        promptLabel="Enter new passord"
-        type="password"/>
+             [size]="50"
+             autocomplete="new-password"
+             id="passwordHash"
+             name="passwordHash"
+             pInputText pPassword
+             promptLabel="Enter new passord"
+             type="password"/>
     </div>
 
     <div class="card-buttons">
@@ -123,5 +123,3 @@
 
   </div>
 </form>
-
-

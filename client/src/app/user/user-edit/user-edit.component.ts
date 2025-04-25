@@ -1,58 +1,61 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import {Component, inject, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {noop} from 'rxjs';
 import {tap} from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {CrudUpdateResponse} from '../../model/crud-update-response';
-import { NgForm, FormsModule } from '@angular/forms';
+import {FormsModule, NgForm} from '@angular/forms';
 import {translateValidationMessage} from '../../util';
 import {MessageService, SelectItem} from 'primeng/api';
-import { ButtonDirective, Button } from 'primeng/button';
-import { CheckboxModule } from 'primeng/checkbox';
-import { InputTextModule } from 'primeng/inputtext';
-import { DropdownModule } from 'primeng/dropdown';
-import { PasswordModule } from 'primeng/password';
+import {Button} from 'primeng/button';
+import {CheckboxModule} from 'primeng/checkbox';
+import {InputTextModule} from 'primeng/inputtext';
+import {SelectModule} from 'primeng/select';
+import {PasswordModule} from 'primeng/password';
+import {User} from "../user";
 
 @Component({
-    selector: 'app-user-edit',
-    templateUrl: './user-edit.component.html',
-    styleUrls: ['./user-edit.component.scss'],
-    imports: [FormsModule, ButtonDirective, RouterLink, CheckboxModule, InputTextModule, DropdownModule, PasswordModule, Button]
+  selector: 'app-user-edit',
+  templateUrl: './user-edit.component.html',
+  styleUrls: ['./user-edit.component.scss'],
+  imports: [FormsModule, RouterLink, CheckboxModule, InputTextModule, SelectModule, PasswordModule, Button]
 })
 export class UserEditComponent implements OnInit {
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  selectedObject: any;
+  selectedObject: User | null = null;
   authoritiesOptions: SelectItem[];
-
   @ViewChild('form') form!: NgForm;
+  readonly #httpClient = inject(HttpClient);
+  readonly #messageService = inject(MessageService);
+  readonly #router = inject(Router);
+  readonly #activatedRoute = inject(ActivatedRoute);
 
-  constructor(private readonly activatedRoute: ActivatedRoute,
-              private readonly httpClient: HttpClient,
-              private readonly messageService: MessageService,
-              private readonly router: Router) {
+  constructor() {
     this.authoritiesOptions = [{label: 'USER', value: 'USER'}, {label: 'ADMIN', value: 'ADMIN'}];
   }
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap
+    this.#activatedRoute.paramMap
       .pipe(tap(() => this.selectedObject = window.history.state)).subscribe(noop);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   save(value: any): void {
-    this.httpClient.post<CrudUpdateResponse>('/be/user-save', {id: this.selectedObject.id, ...value}, {withCredentials: true})
+    if (!this.selectedObject) {
+      return;
+    }
+    this.#httpClient.post<CrudUpdateResponse>('/be/user-save', {id: this.selectedObject.id, ...value}, {withCredentials: true})
       .subscribe(response => {
         if (response.success) {
-          this.messageService.add({
+          this.#messageService.add({
             key: 'tst',
             severity: 'success',
             summary: 'Successfully saved',
             detail: `${value.userName} saved`
           });
-          this.router.navigateByUrl('user-list');
+          this.#router.navigateByUrl('user-list');
         } else {
-          this.messageService.add({
+          this.#messageService.add({
             key: 'tst',
             severity: 'error',
             summary: 'Error',

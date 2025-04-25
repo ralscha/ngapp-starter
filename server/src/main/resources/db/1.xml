@@ -12,7 +12,7 @@
 			</column>
 			<column name="authorities" type="VARCHAR(255)" />
 			<column name="email" type="VARCHAR(255)" />
-			<column name="enabled" type="BIT">
+			<column name="enabled" type="BOOLEAN">
 				<constraints nullable="false" />
 			</column>
 			<column name="first_name" type="VARCHAR(255)" />

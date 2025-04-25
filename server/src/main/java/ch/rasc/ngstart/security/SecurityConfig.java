@@ -6,7 +6,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -14,6 +13,7 @@ import org.springframework.security.web.authentication.logout.HttpStatusReturnin
 import org.springframework.security.web.context.DelegatingSecurityContextRepository;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
@@ -28,30 +28,33 @@ public class SecurityConfig {
 	}
 
 	@Bean
-	public DelegatingSecurityContextRepository delegatingSecurityContextRepository() {
+	DelegatingSecurityContextRepository delegatingSecurityContextRepository() {
 		return new DelegatingSecurityContextRepository(
 				new RequestAttributeSecurityContextRepository(),
 				new HttpSessionSecurityContextRepository());
 	}
 
 	@Bean
-	public PasswordEncoder passwordEncoder() {
+	PasswordEncoder passwordEncoder() {
 		return new Argon2PasswordEncoder(16, 32, 8, 1 << 16, 4);
 	}
 
 	@Bean
-	public WebSecurityCustomizer webSecurityCustomizer() {
-		return web -> web.ignoring().requestMatchers("/", "/assets/**", "/svg/**",
-				"/*.br", "/*.gz", "/*.html", "/*.js", "/*.css");
-	}
-
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf(customizer -> customizer.disable())
 				.securityContext(securityContext -> securityContext
 						.securityContextRepository(delegatingSecurityContextRepository()))
 				.authorizeHttpRequests(customizer -> {
-					customizer.requestMatchers("/be/authenticate", "/be/login")
+					customizer
+							.requestMatchers(new AntPathRequestMatcher("/"),
+									new AntPathRequestMatcher("/assets/**"),
+									new AntPathRequestMatcher("/svg/**"),
+									new AntPathRequestMatcher("/*.br"),
+									new AntPathRequestMatcher("/*.gz"),
+									new AntPathRequestMatcher("/*.html"),
+									new AntPathRequestMatcher("/*.js"),
+									new AntPathRequestMatcher("/*.css"))
+							.permitAll().requestMatchers("/be/authenticate", "/be/login")
 							.permitAll().anyRequest().authenticated();
 				})
 				.logout(customizer -> customizer.logoutUrl("/be/logout")
