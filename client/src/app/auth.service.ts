@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {catchError, share, tap} from 'rxjs/operators';
@@ -7,11 +7,13 @@ import {catchError, share, tap} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
+  private readonly httpClient = inject(HttpClient);
+
   private readonly authoritySubject = new BehaviorSubject<string | null>(null);
   readonly authority$ = this.authoritySubject.asObservable();
   private readonly authorityCall$: Observable<string | null>;
 
-  constructor(private readonly httpClient: HttpClient) {
+  constructor() {
     this.authorityCall$ = this.httpClient.get<string>('/be/authenticate', {
       withCredentials: true
     })
