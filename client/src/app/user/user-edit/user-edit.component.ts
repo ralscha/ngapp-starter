@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, ViewChild} from '@angular/core';
+import {Component, inject, OnInit, viewChild} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {noop} from 'rxjs';
 import {tap} from 'rxjs/operators';
@@ -24,7 +24,7 @@ export class UserEditComponent implements OnInit {
 
   selectedObject: User | null = null;
   authoritiesOptions: SelectItem[];
-  @ViewChild('form') form!: NgForm;
+  readonly form = viewChild.required<NgForm>('form');
   readonly #httpClient = inject(HttpClient);
   readonly #messageService = inject(MessageService);
   readonly #router = inject(Router);
@@ -63,7 +63,7 @@ export class UserEditComponent implements OnInit {
           });
           if (response.fieldErrors) {
             for (const [key, values] of Object.entries(response.fieldErrors)) {
-              const comp = this.form.form.get(key);
+              const comp = this.form().form.get(key);
               if (comp) {
                 const errors = [];
                 for (const v of values) {

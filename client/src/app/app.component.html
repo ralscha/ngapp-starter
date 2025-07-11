@@ -1,4 +1,4 @@
-<p-toast [baseZIndex]="10000" key="tst" position="top-right"></p-toast>
+<p-toast [baseZIndex]="10000" key="tst" position="top-right" />
 <p-drawer #drawer [(visible)]="sidebarOpen">
   @if (authenticated) {
     <ul>
@@ -31,6 +31,6 @@
   </div>
 
   <main>
-    <router-outlet></router-outlet>
+    <router-outlet />
   </main>
 </div>

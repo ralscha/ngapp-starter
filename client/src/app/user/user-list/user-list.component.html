@@ -1,4 +1,4 @@
-<p-confirmDialog icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-confirmDialog icon="pi pi-exclamation-triangle" />
 <p-table [(contextMenuSelection)]="selectedObject"
          [(selection)]="selectedObject"
          [columns]="cols"
@@ -13,7 +13,7 @@
     <div class="table-header">
       <span class="title">Users</span>
       <div class="buttons">
-        <p-button (click)="edit()" icon="fas fa-plus" label="New" type="button"></p-button>
+        <p-button (click)="edit()" icon="fas fa-plus" label="New" type="button" />
       </div>
     </div>
   </ng-template>
@@ -25,7 +25,7 @@
           [ngClass]="{'col-center': col.align === 'center'}"
           [pSortableColumn]="col.field">
           {{ col.header }}
-          <p-sortIcon [field]="col.field"></p-sortIcon>
+          <p-sortIcon [field]="col.field" />
         </th>
       }
     </tr>
@@ -41,6 +41,6 @@
     </tr>
   </ng-template>
 </p-table>
-<p-contextMenu #cm [model]="contextMenuItems"></p-contextMenu>
+<p-contextMenu #cm [model]="contextMenuItems" />
 
 

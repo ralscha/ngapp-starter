@@ -3,14 +3,14 @@
   <div class="card">
 
     <div class="card-title">
-      <p-button icon="fas fa-arrow-left" label="Back" routerLink="/user-list" type="button"></p-button>
+      <p-button icon="fas fa-arrow-left" label="Back" routerLink="/user-list" type="button" />
       <h2>User</h2>
     </div>
 
     <label for="enabled">Enabled</label>
     <div>
       <p-checkbox [binary]="true"
-                  [ngModel]="selectedObject?.enabled" id="enabled" name="enabled"></p-checkbox>
+                  [ngModel]="selectedObject?.enabled" id="enabled" name="enabled" />
     </div>
 
     <label for="username">Username</label>
@@ -95,7 +95,7 @@
     <div>
       <p-select #authorities="ngModel" [ngModel]="selectedObject?.authorities"
                 [options]="authoritiesOptions" [required]="true"
-                id="authority" name="authorities"></p-select>
+                id="authority" name="authorities" />
       @if (form.submitted && authorities.invalid) {
         <div class="input-error">
           @if (authorities.errors?.['required']) {
@@ -118,7 +118,7 @@
     </div>
 
     <div class="card-buttons">
-      <p-button icon="fas fa-save" label="Save" styleClass="ui-button-success" type="submit"></p-button>
+      <p-button icon="fas fa-save" label="Save" styleClass="ui-button-success" type="submit" />
     </div>
 
   </div>
