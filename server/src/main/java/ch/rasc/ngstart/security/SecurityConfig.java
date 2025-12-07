@@ -13,7 +13,6 @@ import org.springframework.security.web.authentication.logout.HttpStatusReturnin
 import org.springframework.security.web.context.DelegatingSecurityContextRepository;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
@@ -36,7 +35,7 @@ public class SecurityConfig {
 
 	@Bean
 	PasswordEncoder passwordEncoder() {
-		return new Argon2PasswordEncoder(16, 32, 8, 1 << 16, 4);
+		return new Argon2PasswordEncoder(16, 32, 8, 1 << 18, 4);
 	}
 
 	@Bean
@@ -46,14 +45,8 @@ public class SecurityConfig {
 						.securityContextRepository(delegatingSecurityContextRepository()))
 				.authorizeHttpRequests(customizer -> {
 					customizer
-							.requestMatchers(new AntPathRequestMatcher("/"),
-									new AntPathRequestMatcher("/assets/**"),
-									new AntPathRequestMatcher("/svg/**"),
-									new AntPathRequestMatcher("/*.br"),
-									new AntPathRequestMatcher("/*.gz"),
-									new AntPathRequestMatcher("/*.html"),
-									new AntPathRequestMatcher("/*.js"),
-									new AntPathRequestMatcher("/*.css"))
+							.requestMatchers("/", "/assets/**", "/svg/**", "/*.br",
+									"/*.gz", "/*.html", "/*.js", "/*.css")
 							.permitAll().requestMatchers("/be/authenticate", "/be/login")
 							.permitAll().anyRequest().authenticated();
 				})

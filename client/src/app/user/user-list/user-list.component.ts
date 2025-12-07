@@ -8,7 +8,7 @@ import {ConfirmationService, MenuItem, MessageService, PrimeTemplate} from 'prim
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {TableModule} from 'primeng/table';
 import {Button} from 'primeng/button';
-import {NgClass} from '@angular/common';
+
 import {ContextMenuModule} from 'primeng/contextmenu';
 import {User} from "../user";
 
@@ -16,7 +16,7 @@ import {User} from "../user";
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
-  imports: [ConfirmDialogModule, TableModule, PrimeTemplate, NgClass, ContextMenuModule, Button]
+  imports: [ConfirmDialogModule, TableModule, PrimeTemplate, ContextMenuModule, Button]
 })
 export class UserListComponent implements OnInit {
 

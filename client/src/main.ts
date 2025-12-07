@@ -16,14 +16,14 @@ import {ToastModule} from 'primeng/toast';
 import {ToggleSwitchModule} from 'primeng/toggleswitch';
 import {DrawerModule} from 'primeng/drawer';
 import {AppComponent} from './app/app.component';
-import {importProvidersFrom} from '@angular/core';
+import {importProvidersFrom, provideZoneChangeDetection} from '@angular/core';
 import {providePrimeNG} from 'primeng/config';
 import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
 import Aura from '@primeng/themes/aura';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(BrowserModule, AppRoutingModule, FormsModule, InputTextModule, ConfirmDialogModule, TableModule, ContextMenuModule, KeyFilterModule, CheckboxModule, ButtonModule, PasswordModule, SelectModule, ToastModule, ToggleSwitchModule, DrawerModule),
+    provideZoneChangeDetection(),importProvidersFrom(BrowserModule, AppRoutingModule, FormsModule, InputTextModule, ConfirmDialogModule, TableModule, ContextMenuModule, KeyFilterModule, CheckboxModule, ButtonModule, PasswordModule, SelectModule, ToastModule, ToggleSwitchModule, DrawerModule),
     MessageService, ConfirmationService, provideHttpClient(withInterceptorsFromDi()),
     provideAnimationsAsync(),
     providePrimeNG({

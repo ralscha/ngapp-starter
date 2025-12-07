@@ -42,7 +42,7 @@ public class CrudUpdateResponse {
 			BindingResult bindingResult) {
 		Map<String, List<ValidationCode>> errorMap = new HashMap<>();
 		for (FieldError fieldError : bindingResult.getFieldErrors()) {
-			errorMap.computeIfAbsent(fieldError.getField(), key -> new ArrayList<>()).add(
+			errorMap.computeIfAbsent(fieldError.getField(), _ -> new ArrayList<>()).add(
 					new ValidationCode(fieldError.getCode(), fieldError.getArguments()));
 		}
 		return errorMap;

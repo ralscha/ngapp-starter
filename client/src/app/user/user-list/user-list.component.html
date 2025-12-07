@@ -22,7 +22,7 @@
     <tr>
       @for (col of columns; track col) {
         <th
-          [ngClass]="{'col-center': col.align === 'center'}"
+          [class.col-center]="col.align === 'center'"
           [pSortableColumn]="col.field">
           {{ col.header }}
           <p-sortIcon [field]="col.field" />
@@ -35,7 +35,7 @@
         [pSelectableRow]="rowData">
       @for (col of columns; track col) {
         <td
-          [ngClass]="{'col-right': col.align === 'right', 'col-center': col.align === 'center'}">{{ rowData[col.field] }}
+          [class]="{'col-right': col.align === 'right', 'col-center': col.align === 'center'}">{{ rowData[col.field] }}
         </td>
       }
     </tr>
