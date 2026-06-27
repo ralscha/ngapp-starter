@@ -1,16 +1,26 @@
-<form #form="ngForm" (ngSubmit)="form.valid && login(username.value, password.value)"
-      [ngFormOptions]="{updateOn: 'submit'}" novalidate>
-
+<form
+  #form="ngForm"
+  (ngSubmit)="form.valid && login(username.value, password.value)"
+  [ngFormOptions]="{ updateOn: 'submit' }"
+  novalidate
+>
   <div>
     <h2>Login</h2>
 
     <label for="username">Username</label>
     <div>
-      <input #username="ngModel" autocapitalize="off" autocomplete="username" autofocus
-             id="username" name="username"
-             ngModel pInputText
-             required
-             spellcheck="false"/>
+      <input
+        #username="ngModel"
+        autocapitalize="off"
+        autocomplete="username"
+        autofocus
+        id="username"
+        name="username"
+        ngModel
+        pInputText
+        required
+        spellcheck="false"
+      />
       @if (form.submitted && username.invalid) {
         <div class="input-error">
           @if (username.errors?.['required']) {
@@ -22,11 +32,16 @@
 
     <label for="password">Password</label>
     <div>
-      <input #password="ngModel"
-             autocomplete="current-password" id="password"
-             name="password"
-             ngModel pInputText required
-             type="password"/>
+      <input
+        #password="ngModel"
+        autocomplete="current-password"
+        id="password"
+        name="password"
+        ngModel
+        pInputText
+        required
+        type="password"
+      />
 
       @if (form.submitted && password.invalid) {
         <div class="input-error">
@@ -40,9 +55,3 @@
     <p-button label="Login" type="submit" />
   </div>
 </form>
-
-
-
-
-
-

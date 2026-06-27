@@ -7,4 +7,4 @@ export type User = {
   passwordHash: string;
   authorities: string;
   enabled: boolean;
-}
+};

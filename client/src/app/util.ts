@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function translateValidationMessage({code, args}: { code: string, args: any[] }): string {
+export function translateValidationMessage({ code, args }: { code: string; args: any[] }): string {
   switch (code) {
     case 'DecimalMax':
       return `Must be less than ${args[1] === true ? 'or equal to ' : ''}${args[2].defaultMessage}`;
@@ -43,5 +43,4 @@ export function translateValidationMessage({code, args}: { code: string, args: a
     default:
       return code;
   }
-
 }

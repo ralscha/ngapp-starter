@@ -1,7 +1,5 @@
 <form #form="ngForm" (ngSubmit)="form.valid && save(form.value)" class="form-container" novalidate>
-
   <div class="card">
-
     <div class="card-title">
       <p-button icon="fas fa-arrow-left" label="Back" routerLink="/user-list" type="button" />
       <h2>User</h2>
@@ -9,20 +7,29 @@
 
     <label for="enabled">Enabled</label>
     <div>
-      <p-checkbox [binary]="true"
-                  [ngModel]="selectedObject?.enabled" id="enabled" name="enabled" />
+      <p-checkbox
+        [binary]="true"
+        [ngModel]="$safeNavigationMigration(selectedObject?.enabled)"
+        id="enabled"
+        name="enabled"
+      />
     </div>
 
     <label for="username">Username</label>
     <div>
-      <input #username="ngModel"
-             [ngModel]="selectedObject?.userName"
-             [required]="true"
-             [size]="50"
-             autocapitalize="off"
-             autocomplete="username" id="username"
-             maxlength="255"
-             name="userName" pInputText spellcheck="false"/>
+      <input
+        #username="ngModel"
+        [ngModel]="$safeNavigationMigration(selectedObject?.userName)"
+        [required]="true"
+        [size]="50"
+        autocapitalize="off"
+        autocomplete="username"
+        id="username"
+        maxlength="255"
+        name="userName"
+        pInputText
+        spellcheck="false"
+      />
 
       @if (form.submitted && username.invalid) {
         <div class="input-error">
@@ -38,14 +45,21 @@
 
     <label for="email">Email</label>
     <div>
-      <input #email="ngModel"
-             [ngModel]="selectedObject?.email"
-             [required]="true"
-             [size]="50"
-             autocapitalize="off"
-             autocomplete="email" email id="email"
-             maxlength="255"
-             name="email" pInputText spellcheck="false" type="email"/>
+      <input
+        #email="ngModel"
+        [ngModel]="$safeNavigationMigration(selectedObject?.email)"
+        [required]="true"
+        [size]="50"
+        autocapitalize="off"
+        autocomplete="email"
+        email
+        id="email"
+        maxlength="255"
+        name="email"
+        pInputText
+        spellcheck="false"
+        type="email"
+      />
 
       @if (form.submitted && email.invalid) {
         <div class="input-error">
@@ -61,11 +75,17 @@
 
     <label for="firstName">First Name</label>
     <div>
-      <input #firstName="ngModel" [ngModel]="selectedObject?.firstName"
-             [required]="true"
-             [size]="50"
-             id="firstName"
-             maxlength="255" name="firstName" pInputText spellcheck="false"/>
+      <input
+        #firstName="ngModel"
+        [ngModel]="$safeNavigationMigration(selectedObject?.firstName)"
+        [required]="true"
+        [size]="50"
+        id="firstName"
+        maxlength="255"
+        name="firstName"
+        pInputText
+        spellcheck="false"
+      />
       @if (form.submitted && firstName.invalid) {
         <div class="input-error">
           @if (firstName.errors?.['required']) {
@@ -77,11 +97,17 @@
 
     <label for="lastName">Last Name</label>
     <div>
-      <input #lastName="ngModel" [ngModel]="selectedObject?.lastName"
-             [required]="true"
-             [size]="50"
-             id="lastName"
-             maxlength="255" name="lastName" pInputText spellcheck="false"/>
+      <input
+        #lastName="ngModel"
+        [ngModel]="$safeNavigationMigration(selectedObject?.lastName)"
+        [required]="true"
+        [size]="50"
+        id="lastName"
+        maxlength="255"
+        name="lastName"
+        pInputText
+        spellcheck="false"
+      />
       @if (form.submitted && lastName.invalid) {
         <div class="input-error">
           @if (lastName.errors?.['required']) {
@@ -93,9 +119,14 @@
 
     <label for="authority">Authority</label>
     <div>
-      <p-select #authorities="ngModel" [ngModel]="selectedObject?.authorities"
-                [options]="authoritiesOptions" [required]="true"
-                id="authority" name="authorities" />
+      <p-select
+        #authorities="ngModel"
+        [ngModel]="$safeNavigationMigration(selectedObject?.authorities)"
+        [options]="authoritiesOptions"
+        [required]="true"
+        id="authority"
+        name="authorities"
+      />
       @if (form.submitted && authorities.invalid) {
         <div class="input-error">
           @if (authorities.errors?.['required']) {
@@ -107,19 +138,20 @@
 
     <label for="passwordHash">New Password</label>
     <div>
-      <input [ngModel]="selectedObject?.passwordHash"
-             [size]="50"
-             autocomplete="new-password"
-             id="passwordHash"
-             name="passwordHash"
-             pPassword
-             promptLabel="Enter new passord"
-             type="password"/>
+      <input
+        [ngModel]="$safeNavigationMigration(selectedObject?.passwordHash)"
+        [size]="50"
+        autocomplete="new-password"
+        id="passwordHash"
+        name="passwordHash"
+        pPassword
+        promptLabel="Enter new passord"
+        type="password"
+      />
     </div>
 
     <div class="card-buttons">
       <p-button icon="fas fa-save" label="Save" styleClass="ui-button-success" type="submit" />
     </div>
-
   </div>
 </form>
